@@ -20,6 +20,7 @@
 # production
 /build
 .vscode/
+styles.md
 
 # misc
 .DS_Store
