@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { faIR } from "@/constants/clerk-localization";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +26,65 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa-IR" dir="rtl">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#161925]`}
+      <ClerkProvider
+        appearance={{
+          layout: {
+            logoImageUrl: "icons/logo.svg",
+            socialButtonsVariant: "iconButton",
+            unsafe_disableDevelopmentModeWarnings: true,
+          },
+          variables: {
+            colorText: "#fff",
+            colorPrimary: "#0E78F9",
+            colorBackground: "#1c1f2e",
+            colorInputBackground: "#2f2a41",
+            colorInputText: "#fff",
+          },
+          elements: {
+            userButtonPopoverActionButton: {
+              color: "#fff",
+              "&:hover": {
+                color: "#FFFFFF75",
+              },
+            },
+            // modalBackdrop: {
+            //   maxHeight: "100vh",
+            //   height: "100vh",
+            // },
+            rootBox: {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+            cardBox: {
+              maxHeight: "87vh",
+              height: "87vh",
+            },
+            modalCloseButton: {
+              padding: "0 0 0 0",
+            },
+            navbarButton: {
+              color: "#FFFFFFFF",
+              backgroundColor: "#000B39D1",
+              "&:hover": {
+                color: "#FFFFFFAB",
+                backgroundColor: "#000B39B3",
+              },
+            },
+            badge: {
+              color: "#FFFFFFFF",
+              backgroundColor: "#000B39FF",
+            },
+          },
+        }}
+        localization={faIR}
       >
-        {children}
-      </body>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#161925]`}
+        >
+          {children}
+        </body>
+      </ClerkProvider>
     </html>
   );
 }

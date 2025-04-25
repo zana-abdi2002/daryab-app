@@ -2,10 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import MobileNav from "./MobileNav";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between fixed z-50 w-full bg-[#1C1F2E] px-4 py-3 lg:px-10">
+    <nav className="flex justify-between fixed z-50 w-full bg-[#1C1F2E] px-4 py-2 lg:px-10">
       {/* LOGO ------------------------------------------------ */}
       <Link href="/" className="flex items-center gap-1">
         <Image
@@ -21,8 +22,15 @@ const Navbar = () => {
       </Link>
       {/* ------------------------------------------------------- */}
 
-      <div className="justify-between gap-5">
-        {/* User management */}
+      <div className="flex flex-row justify-between gap-5">
+        <SignedIn>
+          <UserButton
+            appearance={{
+              layout: { unsafe_disableDevelopmentModeWarnings: true },
+            }}
+          />
+        </SignedIn>
+
         <MobileNav />
       </div>
     </nav>

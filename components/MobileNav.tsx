@@ -19,7 +19,7 @@ const MobileNav = () => {
   const pathname = usePathname();
 
   return (
-    <section className="w-full">
+    <section className="w-full flex items-center">
       <Sheet>
         <SheetTrigger>
           <Image
