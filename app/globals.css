@@ -120,3 +120,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Clerck override ------------------------ */
+.cl-providerIcon__github {
+  filter: invert(1);
+}
+
+.cl-socialButtonsIconButton {
+  background-color: #000000;
+}
+.cl-socialButtonsIconButton:hover {
+  background-color: #00000071;
+}
+
+.cl-internal-1ftpdtb {
+  background-color: #ffffff74;
+}
+
+.cl-internal-2iusy0 {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0;
+}
