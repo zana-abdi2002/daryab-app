@@ -8,6 +8,8 @@ import MeetingModal from "./MeetingModal";
 import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { toast } from "sonner";
+import { Textarea } from "./ui/textarea";
+import ReactDatePicker from "react-datepicker";
 
 const MeetingTypeList = () => {
   const router = useRouter();
@@ -66,6 +68,8 @@ const MeetingTypeList = () => {
     }
   };
 
+  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
+
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-5 md:gap-4">
       <HomeCard
@@ -97,6 +101,54 @@ const MeetingTypeList = () => {
         handleClick={() => setmeetingState("isJoiningMeeting")}
         color="bg-[#F9A90E]"
       />
+
+      {!callDetails ? (<MeetingModal
+        isOpen={meetingState === "isScheduleMeeting"}
+        onClose={() => setmeetingState(undefined)}
+        title="برنامه ریزی یک جلسه"
+        buttonText="ساخت جلسه"
+        className="text-center"
+        handleClick={createMeeting}
+      >
+        <div className="flex flex-col gap-2.5">
+          <label className="text-base text-normal leading-[22px] text-sky-100 ">
+            توضیحات
+          </label>
+          <Textarea className="border-non bg-[#161925] focus-visible:ring-0 focus-visible:ring-offset-0" onChange={(e) => {
+            setValues({ ...values, description: e.target.value })
+          }} />
+        </div>
+        <div className="flex w-full flex-col gap-2.5">
+          <label className="text-base text-normal leading-[22px] text-sky-100 ">
+            یک تاریخ انتخاب کنید
+          </label>
+          <ReactDatePicker
+            selected={values.dateTime}
+            onChange={(date) => setValues({ ...values, dateTime: date! })}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            timeCaption="time"
+            dateFormat={"yyyy MMMM d h:mm aa"}
+            className="w-full rounded bg-[#161925] p-2 focus:outline-none"
+          />
+        </div>
+      </MeetingModal>) : (
+        <MeetingModal
+          isOpen={meetingState === "isScheduleMeeting"}
+          onClose={() => setmeetingState(undefined)}
+          title="برنامه ریزی یک جلسه"
+          className="text-center"
+          handleClick={() => {
+            navigator.clipboard.writeText(meetingLink);
+            toast.success('لینک کپی شد')
+          }}
+          image="/icons/checked.svg"
+          buttonIcon="/icons/copy.svg"
+          buttonText="لینک جلسه را کپی کن"
+        />
+      )}
+
       <MeetingModal
         isOpen={meetingState === "isInstantMeeting"}
         onClose={() => setmeetingState(undefined)}

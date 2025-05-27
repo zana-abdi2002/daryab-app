@@ -4,8 +4,9 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import { faIR } from "@/constants/clerk-localization";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
+import "react-datepicker/dist/react-datepicker.css"
 // import "global.css";
 
 const geistSans = Geist({
