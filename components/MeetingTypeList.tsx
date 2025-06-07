@@ -91,8 +91,7 @@ const MeetingTypeList = () => {
         title="ضبط شده‌ها"
         description="ویدیوها را مشاهده کنید"
         handleClick={() => router.push("/recordings")}
-        color="bg-[#830EF9;
-]"
+        color="bg-[#830EF9]"
       />
       <HomeCard
         imgSrc="/icons/add-meeting.svg"
