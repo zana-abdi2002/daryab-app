@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LayoutList, Loader, Users } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import EndCallButton from "./EndCallButton";
 
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right"; // define available layout instances
@@ -32,6 +32,8 @@ const MeetingRoom = () => {
   const [layout, setLayout] = useState<CallLayoutType>("speaker-left");
 
   const [showParticipants, setShowParticipants] = useState(false);
+
+  const router = useRouter()
 
   // to have a <Loader /> when call state is not joined yet -----------------------------
   const { useCallCallingState } = useCallStateHooks();
@@ -74,7 +76,7 @@ const MeetingRoom = () => {
         dir="ltr"
         className=" bottom-0 flex w-full justify-center items-center gap-5 flex-wrap max-md:pb-3"
       >
-        <CallControls />
+        <CallControls onLeave={() => router.push('/')} />
 
         <DropdownMenu>
           <div className="flex items-center">
