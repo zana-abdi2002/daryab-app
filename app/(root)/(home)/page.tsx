@@ -1,10 +1,16 @@
 'use client'
 
+import Loader from "@/components/Loader";
 import MeetingTypeList from "@/components/MeetingTypeList";
+import { useGetCalls } from "@/hooks/useGetCalls";
+import { Call } from "@stream-io/video-react-sdk";
 import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const [now, setNow] = useState(new Date())
+  const { upcomingCalls, isLoading } = useGetCalls();
+
+
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -24,6 +30,29 @@ const Home = () => {
   const date = new Intl.DateTimeFormat("fa-IR", { dateStyle: "full" }).format(
     now
   );
+  const closeUpcomingCall = (upcomingCalls: Call[]) => {
+    try {
+      console.log(upcomingCalls[0])
+      const upcomingDate = upcomingCalls[0].state.startsAt
+      let type: string = ''
+      if (upcomingDate === now) type = 'today'
+
+      const formattedUpcomingDate = new Intl.DateTimeFormat("fa-IR", {
+        day: type === 'today' ? undefined : "numeric",
+        month: type === 'today' ? undefined : "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(
+        upcomingDate
+      );
+      return formattedUpcomingDate
+    } catch (error) {
+      return null
+    }
+  }
+
+  if (isLoading) return <Loader />
 
   return (
     <section className="flex size-full flex-col gap-7 text-white">
@@ -32,9 +61,15 @@ const Home = () => {
         style={{ backgroundImage: "url('/images/hero-background.png')" }}
       >
         <div className="flex h-full flex-col justify-between max-md:px-2 max-md:py-4 lg:p-5">
-          <h2 className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal">
-            جلسه پیش رو در: 22:10
-          </h2>
+          {upcomingCalls?.length > 0 ? (
+            <h2 className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal">
+              جلسه پیش رو در: {closeUpcomingCall(upcomingCalls)}
+            </h2>
+          ) : (
+            <h2 className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal">
+              جلسه ای برنامه ریزی نشده
+            </h2>
+          )}
           <div className="flex flex-col gap-2 pr-4 pb-2 ">
             <h1 className="text-4xl font-extrabold lg:text-7xl text-shadow-lg">
               {time}
