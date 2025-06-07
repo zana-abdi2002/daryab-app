@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 import MeetingCard from './MeetingCard';
 import Loader from './Loader';
 import { toast } from 'sonner';
+// import shortid from 'shortid';
 
 const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
@@ -51,6 +52,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
           // all recordings of a meeting
           callRecordings.map(
             (meeting) => meeting.queryRecordings()
+            // (meeting) => meeting.delete()
           )
         )
 
@@ -70,6 +72,30 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
   }, [type, callRecordings])
 
+  const timeToPersian = (start_time, type: 'short' | 'long') => {
+
+    try {
+      const start_time_obj = new Date(start_time)
+
+      const persianDate = new Intl.DateTimeFormat('fa-IR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: type === 'long' ? 'numeric' : undefined,
+        minute: type === 'long' ? 'numeric' : undefined,
+      }).format(start_time_obj);
+
+      return persianDate
+
+    } catch (error) {
+      return null
+    }
+
+  }
+
+  const uniqueId = () => {
+    return crypto.randomUUID()
+  }
 
   const calls = getCalls()
   const noCallsMessage = getNoCallsMessage()
@@ -79,17 +105,26 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
   return (
     <div className='grid grid-cols-1 gap-5 xl:grid-cols-2 '>
       {calls && calls.length > 0 ? calls.map((meeting: Call | CallRecording) => (
-        <MeetingCard
-          key={(meeting as Call).id}
+        < MeetingCard
+          key={(meeting as Call).id || uniqueId()} // shortid.generate()
           icon={
-            type == 'ended'
+            type === 'ended'
               ? '/icons/previous.svg'
               : type === 'upcoming'
                 ? '/icons/upcoming.svg'
                 : '/icons/recordings.svg'
           }
-          title={(meeting as Call).state?.custom.description.substring(0, 26) || meeting.filename.substring(0, 20) || 'No Description'}
-          date={meeting.state?.startsAt.toLocaleString() || meeting.start_time.toLocaleString()}
+          title={
+            type == 'recordings'
+              // meeting?.start_time?.toLocaleString()
+              ? ` ضبط شده در: ${timeToPersian(meeting?.start_time, 'short')}`
+              : type === 'ended'
+                ? (meeting as Call).state?.custom?.description?.substring(0, 26) || 'نشست خصوصی'
+                : type === 'upcoming'
+                  ? (meeting as Call).state?.custom?.description?.substring(0, 26) || `نشست آینده در: ${meeting?.start_time?.toLocaleString()}`
+                  : 'بدون توضیحات'
+          }
+          date={timeToPersian(meeting.state?.startsAt, 'long') || timeToPersian(meeting?.start_time, 'long')}
           isPreviousMeeting={type == 'ended'}
           buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
           buttonText={type === 'recordings' ? 'پخش' : 'شروع'}
