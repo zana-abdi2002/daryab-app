@@ -1,8 +1,20 @@
+'use client'
+
 import MeetingTypeList from "@/components/MeetingTypeList";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
-  const now = new Date();
+  const [now, setNow] = useState(new Date())
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNow(new Date());
+    }, 5000); // update every 5000 milliseconds (5 second)
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   const time = now.toLocaleTimeString("en-US", {
     hour: "2-digit",
