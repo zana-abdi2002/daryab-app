@@ -45,7 +45,7 @@ const MeetingSetup = ({
           });
           toast.success("دوربین و میکروفون آماده هستند");
           // setIsMicCamToggledOn(true)
-        } catch (_) {
+        } catch {
           toast.error(
             "لطفا اجازه دسترسی به دوربین و میکروفون را تایید کنید."
           );

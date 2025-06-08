@@ -47,7 +47,7 @@ const Home = () => {
         upcomingDate
       );
       return formattedUpcomingDate
-    } catch (_) {
+    } catch {
       return null
     }
   }
