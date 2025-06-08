@@ -72,7 +72,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
   }, [type, callRecordings])
 
-  // @ts-expect-error
+  // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
   const timeToPersian = (start_time, type: 'short' | 'long') => {
 
     try {
@@ -118,25 +118,25 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
           title={
             type == 'recordings'
               // meeting?.start_time?.toLocaleString()
-              // @ts-expect-error
+              // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
               ? ` ضبط شده در: ${timeToPersian(meeting?.start_time, 'short')}`
               : type === 'ended'
                 ? (meeting as Call).state?.custom?.description?.substring(0, 26) || 'نشست خصوصی'
                 : type === 'upcoming'
-                  // @ts-expect-error
+                  // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
                   ? (meeting as Call).state?.custom?.description?.substring(0, 26) || `نشست آینده در: ${meeting?.start_time?.toLocaleString()}`
                   : 'بدون توضیحات'
           }
-          // @ts-expect-error
+          // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
           date={timeToPersian(meeting.state?.startsAt, 'long') || timeToPersian(meeting?.start_time, 'long')}
           isPreviousMeeting={type == 'ended'}
           buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
           buttonText={type === 'recordings' ? 'پخش' : 'شروع'}
           link={
-            // @ts-expect-error
+            // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
             type === 'recordings' ? meeting.url : `${process.env.NEXT_PUBLICK_BASE_URL}/meeting/${meeting.id}`
           }
-          // @ts-expect-error
+          // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
           handleClick={type === 'recordings' ? () => router.push(`${meeting.url}`) : () => router.push(`/meeting/${meeting.id}`)}
         />
       )) : (
