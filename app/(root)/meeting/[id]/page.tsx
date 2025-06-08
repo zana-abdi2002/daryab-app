@@ -13,15 +13,17 @@ const Meeting = () => {
   //{ params: { id } }: { params: { id: string } } inside Meeting
   const params = useParams();
   const id = params.id;
-  const { user, isLoaded } = useUser();
+  const { isLoaded } = useUser();
   const [isSetupComplete, setIsSetupComplete] = useState(false);
+
+  // this hook gets call instance that have been created to pass to <StreamCall call{}>
+  const { call, isCallLoading } = useGetCallByID(id!);
 
   if (!id) {
     // handle the case when id is undefined
     return <div>ID is not defined</div>;
   }
-  // this hook gets call instance that have been created to pass to <StreamCall call{}>
-  const { call, isCallLoading } = useGetCallByID(id);
+
 
   if (!isLoaded || isCallLoading) return <Loader />;
   return (
