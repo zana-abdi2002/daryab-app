@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 'use client'
 
@@ -72,6 +72,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
   }, [type, callRecordings])
 
+  // @ts-ignore
   const timeToPersian = (start_time, type: 'short' | 'long') => {
 
     try {
@@ -117,20 +118,25 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
           title={
             type == 'recordings'
               // meeting?.start_time?.toLocaleString()
+              // @ts-ignore
               ? ` ضبط شده در: ${timeToPersian(meeting?.start_time, 'short')}`
               : type === 'ended'
                 ? (meeting as Call).state?.custom?.description?.substring(0, 26) || 'نشست خصوصی'
                 : type === 'upcoming'
+                  // @ts-ignore
                   ? (meeting as Call).state?.custom?.description?.substring(0, 26) || `نشست آینده در: ${meeting?.start_time?.toLocaleString()}`
                   : 'بدون توضیحات'
           }
+          // @ts-ignore
           date={timeToPersian(meeting.state?.startsAt, 'long') || timeToPersian(meeting?.start_time, 'long')}
           isPreviousMeeting={type == 'ended'}
           buttonIcon1={type === 'recordings' ? '/icons/play.svg' : undefined}
           buttonText={type === 'recordings' ? 'پخش' : 'شروع'}
           link={
+            // @ts-ignore
             type === 'recordings' ? meeting.url : `${process.env.NEXT_PUBLICK_BASE_URL}/meeting/${meeting.id}`
           }
+          // @ts-ignore
           handleClick={type === 'recordings' ? () => router.push(`${meeting.url}`) : () => router.push(`/meeting/${meeting.id}`)}
         />
       )) : (
