@@ -10,6 +10,7 @@ import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { toast } from "sonner";
 import { Textarea } from "./ui/textarea";
 import ReactDatePicker from "react-datepicker";
+import { Input } from "./ui/input";
 
 const MeetingTypeList = () => {
   const router = useRouter();
@@ -156,6 +157,22 @@ const MeetingTypeList = () => {
         buttonText="ساخت جلسه"
         handleClick={createMeeting}
       />
+
+      <MeetingModal
+        isOpen={meetingState === "isJoiningMeeting"}
+        onClose={() => setmeetingState(undefined)}
+        title="لینک را قرار دهید"
+        className="text-center"
+        buttonText="پیوستن به جلسه"
+        handleClick={() => router.push(values.link)}
+      >
+        <Input
+          placeholder="لینک جلسه"
+          className="border-none bg-[#252A41] focus-visible:ring-0 focus-visible:ring-offset-0"
+          onChange={(e) => setValues({ ...values, link: e.target.value })}
+        />
+
+      </MeetingModal>
     </section>
   );
 };
