@@ -5,7 +5,7 @@ import {
   useCall,
   VideoPreview,
 } from "@stream-io/video-react-sdk";
-import { console } from "inspector";
+// import { console } from "inspector";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
@@ -23,18 +23,17 @@ const MeetingSetup = ({
     throw new Error("no call");
   }
 
-  const askPermission = async () => {
-    try {
-      await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true,
-      });
-      setIsMicCamToggledOn(true);
-    } catch (error) {
-      toast.error("لطفا اجازه دسترسی به دوربین و میکروفون را تایید کنید.");
-      // setIsMicCamToggledOn(false);
-    }
-  };
+  // const askPermission = async () => {
+  //   try {
+  //     await navigator.mediaDevices.getUserMedia({
+  //       video: true,
+  //       audio: true,
+  //     });
+  //     setIsMicCamToggledOn(true);
+  //   } catch (error) {
+  //     toast.error("لطفا اجازه دسترسی به دوربین و میکروفون را تایید کنید.");
+  //   }
+  // };
 
   useEffect(() => {
     if (isMicCamToggledOn) {
@@ -46,7 +45,7 @@ const MeetingSetup = ({
           });
           toast.success("دوربین و میکروفون آماده هستند");
           // setIsMicCamToggledOn(true)
-        } catch (error) {
+        } catch (_) {
           toast.error(
             "لطفا اجازه دسترسی به دوربین و میکروفون را تایید کنید."
           );

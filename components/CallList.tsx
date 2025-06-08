@@ -63,7 +63,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
         setRecordings(recordings)
 
-      } catch (error) {
+      } catch (_) {
         toast.error('درخواستهای بیش از حد، دوباره امتحان کنید')
       }
     }
@@ -88,7 +88,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
 
       return persianDate
 
-    } catch (error) {
+    } catch (_) {
       return null
     }
 
