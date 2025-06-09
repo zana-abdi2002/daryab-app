@@ -9,7 +9,12 @@ import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { toast } from "sonner";
 import { Textarea } from "./ui/textarea";
-import ReactDatePicker from "react-datepicker";
+// import ReactDatePicker from "react-datepicker";
+import DatePicker from "react-multi-date-picker";
+import TimePicker from "react-multi-date-picker/plugins/time_picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { Input } from "./ui/input";
 
 const MeetingTypeList = () => {
@@ -122,15 +127,31 @@ const MeetingTypeList = () => {
           <label className="text-base text-normal leading-[22px] text-sky-100 ">
             یک تاریخ انتخاب کنید
           </label>
-          <ReactDatePicker
-            selected={values.dateTime}
-            onChange={(date) => setValues({ ...values, dateTime: date! })}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={15}
-            timeCaption="time"
-            dateFormat={"yyyy MMMM d h:mm aa"}
-            className="w-full rounded bg-[#161925] p-2 focus:outline-none"
+          <DatePicker
+            calendar={persian}
+            locale={persian_fa}
+            value={values.dateTime}
+            onChange={(date) => setValues({ ...values, dateTime: date!.toDate() })}
+            plugins={[
+              <TimePicker
+                // timeCaption="ساعت"
+                position="top"
+                hStep={1}
+                mStep={5}
+              />
+            ]}
+            format="DD MMMM hh:mm a" // Jalali format with time
+            className="w-full rounded bg-dark focus:outline-none pointer-events-auto"
+            arrow={false}
+            // inputClass="w-full bg-transparent text-white"
+            calendarPosition="bottom-right"
+            offsetY={-50}
+          // timePickerProps={{
+          //   format: "HH:mm",
+          //   hourStep: 1,
+          //   minuteStep: 15,
+          //   timeCaption: "ساعت",
+          // }}
           />
         </div>
       </MeetingModal>) : (

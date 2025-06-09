@@ -162,3 +162,7 @@
 [data-state="open"] svg {
   filter: invert(1);
 }
+
+.rmdp-arrow-container {
+  color: blue;
+}
