@@ -4,6 +4,7 @@ import Loader from "@/components/Loader";
 import MeetingTypeList from "@/components/MeetingTypeList";
 import { useGetCalls } from "@/hooks/useGetCalls";
 import { Call } from "@stream-io/video-react-sdk";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Home = () => {
@@ -63,7 +64,9 @@ const Home = () => {
         <div className="flex h-full flex-col justify-between max-md:px-2 max-md:py-4 lg:p-5">
           {upcomingCalls?.length > 0 ? (
             <h2 className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal">
-              جلسه پیش رو در: {closeUpcomingCall(upcomingCalls)}
+              <Link href={'/upcoming'}>
+                جلسه پیش رو در: {closeUpcomingCall(upcomingCalls)}
+              </Link>
             </h2>
           ) : (
             <h2 className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal">

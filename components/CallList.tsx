@@ -38,7 +38,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
       case 'recordings':
         return 'No Recordings'
       case 'upcoming':
-        return 'No Upcoming Calls'
+        return 'جلسه‌ای وجود ندارد'
       default:
         return ''
     }

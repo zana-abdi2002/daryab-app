@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
@@ -8,24 +8,21 @@ import { faIR } from "@/constants/clerk-localization";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css"
 // import "global.css";
+import localFont from 'next/font/local';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Daryab",
-  description: "video call easily",
+  description: "تماس تصویری آسان",
   icons: {
     icon: "/icons/logo.svg",
   },
 };
+
+const myFont = localFont({
+  src: '../public/fonts/Lalezar-Regular.ttf',
+  variable: '--font-myfont',
+});
 
 export default function RootLayout({
   children,
@@ -33,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa-IR" dir="rtl">
+    <html lang="fa-IR" dir="rtl" className={myFont.className}>
       <ClerkProvider
         appearance={{
           layout: {
@@ -88,7 +85,7 @@ export default function RootLayout({
         localization={faIR}
       >
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#161925]`}
+          className={`antialiased bg-[#161925]`}
         >
           {children}
           <Toaster expand={true} closeButton richColors position="top-center" />
