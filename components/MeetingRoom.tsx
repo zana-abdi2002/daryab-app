@@ -84,7 +84,7 @@ const MeetingRoom = () => {
                   >
                     {item}
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator className="border-dark-1" />
+                  <DropdownMenuSeparator className="border-[#1C1F2E]" />
                 </div>
               ))}
             </DropdownMenuContent>
