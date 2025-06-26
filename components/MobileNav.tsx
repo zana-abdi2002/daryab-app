@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Sheet,
   SheetContent,
@@ -30,6 +31,8 @@ const MobileNav = () => {
             className="cursor-pointer sm:hidden"
           />
         </SheetTrigger>
+
+
         <SheetContent
           side="left"
           className="border-none bg-[#1C1F2E] max-w-[250px]"
@@ -50,6 +53,8 @@ const MobileNav = () => {
               <Link href="/">ارتباط آنلاین</Link>
             </SheetDescription>
           </SheetHeader>
+
+          {/* Sheet Links ----------------------------------------------- */}
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>
               <section className="flex h-full flex-col gap-6 pt-5 px-2 text-white">
@@ -85,6 +90,7 @@ const MobileNav = () => {
               </section>
             </SheetClose>
           </div>
+          {/* ------------------------------------------------------------ */}
         </SheetContent>
       </Sheet>
     </section>

@@ -7,11 +7,11 @@ const isProtectedRoute = createRouteMatcher([
   "/recordings",
   "/personal-room",
   "/meeting(.*)",
-]);
+]); // routs that must be protected by clerk
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) await auth.protect();
-});
+}); // lock it with clerk if should be protected
 
 export const config = {
   matcher: [

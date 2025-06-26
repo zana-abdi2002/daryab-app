@@ -8,6 +8,7 @@ import GradientText from "./ui/GradientText";
 const Navbar = () => {
   return (
     <nav className="flex justify-between fixed z-50 w-full bg-[#1C1F2E] px-4 py-1 lg:px-10">
+
       {/* LOGO ------------------------------------------------ */}
       <Link href="/" className="flex items-center gap-1">
         <Image
@@ -28,6 +29,7 @@ const Navbar = () => {
       </Link>
       {/* ------------------------------------------------------- */}
 
+      {/* User Icon & Hamburger sheet --------------------------- */}
       <div className="flex flex-row justify-between gap-5">
         <SignedIn>
           <UserButton
@@ -37,8 +39,10 @@ const Navbar = () => {
           />
         </SignedIn>
 
-        <MobileNav />
+        <MobileNav /> {/* sheet for small devices */}
       </div>
+      {/* ------------------------------------------------------- */}
+
     </nav>
   );
 };

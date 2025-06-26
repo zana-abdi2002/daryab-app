@@ -13,11 +13,8 @@ const Sidebar = () => {
     <section className="sticky right-0 top-0 flex h-screen w-fit flex-col justify-between bg-[#1C1F2E] pr-1 pl-2 pt-28 text-white max-sm:hidden lg:w-[220px] lg:pr-4">
       <div className="flex flex-1 flex-col gap-6">
         {sidebarLinks.map((link) => {
-          const isActive =
+          const isActive = // if user is in current sidebar logo page
             pathname === link.route || pathname.startsWith(`${link.route}/`);
-
-          // console.log("pathname:" + pathname);
-          // console.log("link route:" + link.route);
 
           return (
             <a
