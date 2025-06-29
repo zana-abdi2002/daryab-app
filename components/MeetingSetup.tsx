@@ -35,6 +35,7 @@ const MeetingSetup = ({
   //   }
   // };
 
+  // when mic or cam changes, this checks what user wants (isMicCamToggledOn)
   useEffect(() => {
     if (isMicCamToggledOn) {
       (async () => {
@@ -60,10 +61,14 @@ const MeetingSetup = ({
       // toast.error("لطفا اجازه دسترسی به میکروفون و دوربین را فعال کنید.");
     }
   }, [isMicCamToggledOn, call?.camera, call?.microphone]);
+
+
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center gap-3 text-white">
       <h1 className="text-2xl font-bold">ساخت جلسه</h1>
+
       <VideoPreview />
+
       <div className="flex h-16 items-center justify-center gap-3">
         <label className="flex items-center justify-center gap-2 font-medium">
           <input
@@ -75,8 +80,10 @@ const MeetingSetup = ({
           />
           پیوستن بدون میکروفون و دوربین
         </label>
+
         <DeviceSettings />
       </div>
+
       <Button
         className="rounded-md bg-green-500 hover:bg-green-700 px-4 py-2.5"
         onClick={() => {

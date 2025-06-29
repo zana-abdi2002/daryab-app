@@ -3,7 +3,7 @@
 import { tokenProvider } from "@/actions/stream.actions";
 import Loader from "@/components/Loader";
 import { useUser } from "@clerk/nextjs";
-import { Client } from "@clerk/nextjs/server";
+// import { Client } from "@clerk/nextjs/server";
 import { StreamVideo, StreamVideoClient } from "@stream-io/video-react-sdk";
 import { ReactNode, useEffect, useState } from "react";
 
