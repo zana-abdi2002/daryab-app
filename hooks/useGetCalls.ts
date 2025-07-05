@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/providers/AuthProvider";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
 
@@ -6,7 +6,7 @@ export const useGetCalls = () => {
   const [calls, setCalls] = useState<Call[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const client = useStreamVideoClient(); // gets current stream client
-  const { user } = useUser(); // gets current user
+  const { user } = useAuth(); // gets current user
 
   useEffect(() => {
     const loadCalls = async () => {

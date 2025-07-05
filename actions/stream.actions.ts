@@ -1,26 +1,51 @@
 "use server";
 
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUserFromCookies } from "@/lib/auth-server";
 import { StreamClient } from "@stream-io/node-sdk";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY;
 const apiSecret = process.env.STREAM_SECRET_KEY;
 
 export const tokenProvider = async () => {
-  const user = await currentUser();
+  try {
+    const user = await getCurrentUserFromCookies();
 
-  if (!user) throw new Error("User is not logged in!");
-  if (!apiKey) throw new Error("no api key");
-  if (!apiSecret) throw new Error("no apiSecret");
+    if (!user) {
+      console.error("No user found in cookies for Stream token generation");
+      throw new Error("User is not logged in!");
+    }
 
-  const client = new StreamClient(apiKey, apiSecret);
+    if (!apiKey) {
+      console.error("Stream API key missing");
+      throw new Error("Stream API key missing");
+    }
 
-  const validity = 60 * 60;
+    if (!apiSecret) {
+      console.error("Stream API secret missing");
+      throw new Error("Stream API secret missing");
+    }
 
-  const token = client.generateUserToken({
-    user_id: user.id,
-    validity_in_seconds: validity,
-  });
+    // Ensure user ID is properly formatted for Stream
+    const userId = user.id || `user_${Date.now()}`;
 
-  return token;
+    console.log("Generating Stream token for user:", {
+      id: userId,
+      email: user.email,
+    });
+
+    const client = new StreamClient(apiKey, apiSecret);
+
+    const validity = 60 * 60; // 1 hour
+
+    const token = client.generateUserToken({
+      user_id: userId,
+      validity_in_seconds: validity,
+    });
+
+    console.log("Stream token generated successfully for user:", userId);
+    return token;
+  } catch (error) {
+    console.error("Error generating Stream token:", error);
+    throw error;
+  }
 };

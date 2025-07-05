@@ -4,7 +4,7 @@ import Loader from "@/components/Loader";
 import MeetingRoom from "@/components/MeetingRoom";
 import MeetingSetup from "@/components/MeetingSetup";
 import { useGetCallByID } from "@/hooks/useGetCallByID";
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/providers/AuthProvider";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ const Meeting = () => {
   //{ params: { id } }: { params: { id: string } } inside Meeting
   const params = useParams();
   const id = params.id;
-  const { isLoaded } = useUser();
+  const { isLoaded } = useAuth();
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
   // this hook gets call instance that have been created to pass to <StreamCall call{}>

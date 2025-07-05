@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useGetCallByID } from "@/hooks/useGetCallByID";
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/providers/AuthProvider";
 import { useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -19,8 +19,8 @@ const Table = ({ title, description }: { title: string; description: string }) =
 
 
 const PersonalRoom = () => {
-  const { user } = useUser() // get user data from clerk
-  const meetingId = user?.id // stream meetingId is clerk user ID
+  const { user } = useAuth() // get user data from auth provider
+  const meetingId = user?.id // stream meetingId is user ID
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meetingId}?personal=true`
   const client = useStreamVideoClient() // get current stream client
   const { call } = useGetCallByID(meetingId!) // from all calls of this client, get the personal one

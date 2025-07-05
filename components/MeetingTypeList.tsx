@@ -5,7 +5,7 @@ import HomeCard from "./HomeCard";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import MeetingModal from "./MeetingModal";
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/providers/AuthProvider";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { toast } from "sonner";
 import { Textarea } from "./ui/textarea";
@@ -24,7 +24,7 @@ const MeetingTypeList = () => {
     "isScheduleMeeting" | "isJoiningMeeting" | "isInstantMeeting" | undefined
   >();
 
-  const { user } = useUser(); // get user info from clerk
+  const { user } = useAuth(); // get user info from auth provider
   const client = useStreamVideoClient(); // get stream video client instance
   const [values, setValues] = useState({
     dateTime: new Date(),
