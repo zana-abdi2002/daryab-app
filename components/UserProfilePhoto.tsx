@@ -12,9 +12,7 @@ const UserProfilePhoto = () => {
     <img
       src={user.imageUrl}
       alt={user.fullName || "User"}
-      width={40}
-      height={40}
-      className="rounded-full"
+      className="rounded-full object-cover block size-8"
     />
   );
 }

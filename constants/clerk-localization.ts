@@ -419,37 +419,25 @@ export const faIR = {
     emailLink: {
       clientMismatch: {
         subtitle:
-          "To continue, open the verification link on the device and browser from which you initiated the sign-in",
-        title: "Verification link is invalid for this device",
+          "برای ادامه، لینک تأیید را در همان دستگاه و مرورگری که ثبت‌نام را آغاز کرده‌اید باز کنید.",
+        title: "لینک تأیید برای این دستگاه معتبر نیست",
       },
-      expired: {
-        subtitle: "Return to the original tab to continue.",
-        title: "This verification link has expired",
-      },
-      failed: {
-        subtitle: "Return to the original tab to continue.",
-        title: "This verification link is invalid",
-      },
-      formSubtitle: "Use the verification link sent to your email",
-      formTitle: "Verification link",
+      formSubtitle:
+        "از لینک تأییدی که به آدرس ایمیل شما ارسال شده استفاده کنید.",
+      formTitle: "لینک تأیید",
       loading: {
-        subtitle: "You will be redirected soon",
-        title: "Signing in...",
+        title: "در حال ثبت‌نام...",
       },
-      resendButton: "Didn't receive a link? Resend",
-      subtitle: "to continue to {{applicationName}}",
-      title: "Check your email",
-      unusedTab: {
-        title: "You may close this tab",
-      },
+      resendButton: "لینک را دریافت نکرده‌اید؟ ارسال مجدد",
+      subtitle: "برای ادامه به {{applicationName}}",
+      title: "ایمیل خود را تأیید کنید",
       verified: {
-        subtitle: "You will be redirected soon",
-        title: "Successfully signed in",
+        title: "ثبت‌نام با موفقیت انجام شد",
       },
       verifiedSwitchTab: {
-        subtitle: "Return to original tab to continue",
-        subtitleNewTab: "Return to the newly opened tab to continue",
-        titleNewTab: "Signed in on other tab",
+        subtitle: "برای ادامه، به تب جدیدی که باز شده برگردید.",
+        subtitleNewTab: "برای ادامه، به تب قبلی بازگردید.",
+        title: "ایمیل با موفقیت تأیید شد",
       },
     },
     forgotPassword: {
@@ -548,24 +536,25 @@ export const faIR = {
     emailLink: {
       clientMismatch: {
         subtitle:
-          "To continue, open the verification link on the device and browser from which you initiated the sign-up",
-        title: "Verification link is invalid for this device",
+          "برای ادامه، لینک تأیید را در همان دستگاه و مرورگری که ثبت‌نام را آغاز کرده‌اید باز کنید.",
+        title: "لینک تأیید برای این دستگاه معتبر نیست",
       },
-      formSubtitle: "Use the verification link sent to your email address",
-      formTitle: "Verification link",
+      formSubtitle:
+        "از لینک تأییدی که به آدرس ایمیل شما ارسال شده استفاده کنید.",
+      formTitle: "لینک تأیید",
       loading: {
-        title: "Signing up...",
+        title: "در حال ثبت‌نام...",
       },
-      resendButton: "Didn't receive a link? Resend",
-      subtitle: "to continue to {{applicationName}}",
-      title: "Verify your email",
+      resendButton: "لینک را دریافت نکرده‌اید؟ ارسال مجدد",
+      subtitle: "برای ادامه به {{applicationName}}",
+      title: "ایمیل خود را تأیید کنید",
       verified: {
-        title: "Successfully signed up",
+        title: "ثبت‌نام با موفقیت انجام شد",
       },
       verifiedSwitchTab: {
-        subtitle: "Return to the newly opened tab to continue",
-        subtitleNewTab: "Return to previous tab to continue",
-        title: "Successfully verified email",
+        subtitle: "برای ادامه، به تب جدیدی که باز شده برگردید.",
+        subtitleNewTab: "برای ادامه، به تب قبلی بازگردید.",
+        title: "ایمیل با موفقیت تأیید شد",
       },
     },
     legalConsent: {
@@ -696,46 +685,50 @@ export const faIR = {
       "A Web3 Wallet extension cannot be found. Please install one to continue.",
     zxcvbn: {
       couldBeStronger:
-        "Your password works, but could be stronger. Try adding more characters.",
-      goodPassword: "Your password meets all the necessary requirements.",
+        "رمز عبور شما قابل قبول است، اما می‌تواند قوی‌تر باشد. سعی کنید کاراکترهای بیشتری اضافه کنید.",
+      goodPassword: "رمز عبور شما تمام شرایط را دارد.",
       notEnough: "رمز عبور شما قوی نیست.",
       suggestions: {
-        allUppercase: "بعضی از حروف بزرگ باشند ولی نه همه.",
-        anotherWord: "کلمه هایی که کمتر معمول هستند را استفاده کنید.",
-        associatedYears: "از به کارگیری تاریخ های شخصی اجتناب کنید.",
+        allUppercase: "برخی حروف می‌توانند بزرگ باشند، اما نه همه آن‌ها.",
+        anotherWord: "از کلمات کمتر رایج استفاده کنید.",
+        associatedYears: "از به‌کارگیری تاریخ‌های شخصی خودداری کنید.",
         capitalization: "نباید فقط حرف اول بزرگ باشد.",
-        dates: "از به کارگیری تاریخ های شخصی اجتناب کنید.",
-        l33t: "Avoid predictable letter substitutions like '@' for 'a'.",
+        dates: "از به‌کارگیری تاریخ‌های شخصی خودداری کنید.",
+        l33t: "از جایگزینی‌های قابل پیش‌بینی مانند '@' به‌جای 'a' اجتناب کنید.",
         longerKeyboardPattern:
-          "Use longer keyboard patterns and change typing direction multiple times.",
+          "از الگوهای طولانی‌تر صفحه‌کلید استفاده کرده و چند بار جهت تایپ را تغییر دهید.",
         noNeed:
-          "You can create strong passwords without using symbols, numbers, or uppercase letters.",
-        pwned: "If you use this password elsewhere, you should change it.",
-        recentYears: "از تاریخ سالهای اخیر استفاده نکنید.",
-        repeated: "کلمه و کاراکترها را تکرار نکنید.",
-        reverseWords: "Avoid reversed spellings of common words.",
-        sequences: "Avoid common character sequences.",
-        useWords: "Use multiple words, but avoid common phrases.",
+          "می‌توانید رمز عبور قوی ایجاد کنید بدون استفاده از نمادها، اعداد یا حروف بزرگ.",
+        pwned:
+          "اگر این رمز عبور را در جای دیگری نیز استفاده می‌کنید، بهتر است آن را تغییر دهید.",
+        recentYears: "از سال‌های اخیر استفاده نکنید.",
+        repeated: "کلمات و کاراکترها را تکرار نکنید.",
+        reverseWords: "از نوشتن برعکس کلمات رایج خودداری کنید.",
+        sequences: "از دنباله‌های کاراکتری رایج اجتناب کنید.",
+        useWords: "از چند کلمه استفاده کنید، اما از عبارات رایج پرهیز کنید.",
       },
       warnings: {
-        common: "This is a commonly used password.",
-        commonNames: "Common names and surnames are easy to guess.",
-        dates: "Dates are easy to guess.",
+        common: "این یک رمز عبور رایج است.",
+        commonNames: "نام‌ها و نام خانوادگی‌های رایج به‌راحتی حدس زده می‌شوند.",
+        dates: "تاریخ‌ها به‌راحتی حدس زده می‌شوند.",
         extendedRepeat:
-          'Repeated character patterns like "abcabcabc" are easy to guess.',
-        keyPattern: "Short keyboard patterns are easy to guess.",
-        namesByThemselves: "Single names or surnames are easy to guess.",
-        pwned: "Your password was exposed by a data breach on the Internet.",
-        recentYears: "Recent years are easy to guess.",
-        sequences: 'Common character sequences like "abc" are easy to guess.',
-        similarToCommon: "This is similar to a commonly used password.",
-        simpleRepeat: 'Repeated characters like "aaa" are easy to guess.',
+          'الگوهای تکراری مانند "abcabcabc" به‌راحتی حدس زده می‌شوند.',
+        keyPattern: "الگوهای کوتاه صفحه‌کلید به‌راحتی حدس زده می‌شوند.",
+        namesByThemselves:
+          "نام‌ها یا نام خانوادگی‌های تکی به‌راحتی حدس زده می‌شوند.",
+        pwned: "رمز عبور شما در یک نشت اطلاعاتی فاش شده است.",
+        recentYears: "سال‌های اخیر به‌راحتی حدس زده می‌شوند.",
+        sequences:
+          'دنباله‌های کاراکتری رایج مانند "abc" به‌راحتی حدس زده می‌شوند.',
+        similarToCommon: "این رمز عبور شبیه به رمزهای رایج است.",
+        simpleRepeat:
+          'تکرار ساده کاراکترها مانند "aaa" به‌راحتی حدس زده می‌شود.',
         straightRow:
-          "Straight rows of keys on your keyboard are easy to guess.",
-        topHundred: "This is a frequently used password.",
-        topTen: "This is a heavily used password.",
-        userInputs: "There should not be any personal or page related data.",
-        wordByItself: "Single words are easy to guess.",
+          "ردیف‌های مستقیم کلیدها در صفحه‌کلید به‌راحتی حدس زده می‌شوند.",
+        topHundred: "این رمز عبور جزو ۱۰۰ رمز پرکاربرد است.",
+        topTen: "این رمز عبور بسیار رایج است.",
+        userInputs: "نباید هیچ داده شخصی یا مرتبط با صفحه در رمز عبور باشد.",
+        wordByItself: "کلمات تکی به‌راحتی حدس زده می‌شوند.",
       },
     },
   },
@@ -829,9 +822,9 @@ export const faIR = {
         formHint:
           "An email containing a verification link will be sent to this email address.",
         formSubtitle:
-          "Click on the verification link in the email sent to {{identifier}}",
+          "لطفا روی لینک فرستاده شده به آدرس {{identifier}} کلیک کنید",
         formTitle: "Verification link",
-        resendButton: "Didn't receive a link? Resend",
+        resendButton: "پیامی دریافت نکردید؟ ارسال دوباره",
         successMessage:
           "The email {{identifier}} has been added to your account.",
       },
@@ -839,8 +832,7 @@ export const faIR = {
         formButton: "Click to sign-in",
         formSubtitle: "Complete the sign-in with {{identifier}}",
       },
-      formHint:
-        "You'll need to verify this email address before it can be added to your account.",
+      formHint: "ابتدا باید ایمیل خود را تایید کنید.",
       removeResource: {
         messageLine1: "{{identifier}} will be removed from this account.",
         messageLine2:
@@ -848,8 +840,8 @@ export const faIR = {
         successMessage: "{{emailAddress}} has been removed from your account.",
         title: "Remove email address",
       },
-      title: "Add email address",
-      verifyTitle: "Verify email address",
+      title: "اضافه کردن آدرس ایمیل",
+      verifyTitle: "تایید آدرس ایمیل",
     },
     formButtonPrimary__add: "اضافه کردن",
     formButtonPrimary__continue: "ادامه",
