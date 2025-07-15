@@ -7,10 +7,12 @@ import { Call } from "@stream-io/video-react-sdk";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Silk from "@/components/ui/Silk";
+import { useTheme } from "next-themes";
 
 const Home = () => {
   const [now, setNow] = useState(new Date());
   const { upcomingCalls, isLoading } = useGetCalls();
+  const { theme } = useTheme()
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -70,7 +72,7 @@ const Home = () => {
           <Silk
             speed={4}
             scale={0.8}
-            color="#000988FF"
+            color={"#56A8FFFF"}
             noiseIntensity={1.5}
             rotation={0}
           />

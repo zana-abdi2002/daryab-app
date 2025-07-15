@@ -10,7 +10,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <section className="sticky right-0 top-0 flex h-screen w-fit flex-col justify-between bg-[#1C1F2E] pr-1 pl-2 pt-28 text-white max-sm:hidden lg:w-[220px] lg:pr-4">
+    <section className="sticky right-0 top-0 flex h-screen w-fit flex-col justify-between bg-[#09a6f3] border-l-2 dark:bg-[#1C1F2E] dark:border-none pr-1 pl-2 pt-28 text-white max-sm:hidden lg:w-[220px] lg:pr-4">
       <div className="flex flex-1 flex-col gap-6">
         {sidebarLinks.map((link) => {
           const isActive = // if user is in current sidebar logo page

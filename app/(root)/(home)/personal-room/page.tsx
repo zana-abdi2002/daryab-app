@@ -12,7 +12,7 @@ import { toast } from "sonner";
 
 const Table = ({ title, description }: { title: string; description: string }) => (
   <div className="flex flex-col items-start gap-2 xl:flex-row">
-    <h1 className="text-base font-medium text-[#0E78F9] lg:text-xl xl:min-w-32">{title}</h1>
+    <h1 className="text-base font-medium text-[#0000ff] dark:text-[#0E78F9] lg:text-xl xl:min-w-32">{title}</h1>
     <h1 className="truncate text-sm font-bold max-sm:max-w-[320px] lg:text-xl">{description}</h1>
   </div>
 )
@@ -59,10 +59,10 @@ const PersonalRoom = () => {
         <Button className="bg-[#0E78F9]" onClick={startRoom}>
           شروع جلسه
         </Button>
-        <Button className="bg-[#252A41] " onClick={() => {
+        <Button className="dark:bg-[#252A41] " onClick={() => {
           navigator.clipboard.writeText(meetingLink);
           toast(
-            "Link Copied",
+            "لینک کپی شد",
           );
         }}>
           کپی لینک

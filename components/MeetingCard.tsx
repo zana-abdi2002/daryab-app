@@ -33,7 +33,7 @@ const MeetingCard = ({
   // const { toast } = useToast();
 
   return (
-    <section className="flex w-full flex-col justify-between rounded-[14px] bg-[#1C1F2E] px-5 py-8 xl:max-w-[568px]">
+    <section className="flex w-full flex-col justify-between rounded-[14px] border-2 dark:bg-[#1C1F2E] dark:border-none px-5 py-8 xl:max-w-[568px]">
       <div className="flex flex-col gap-5">
         <Image src={icon} alt="upcoming" width={28} height={28} />
         <div className="flex justify-between">
@@ -47,7 +47,7 @@ const MeetingCard = ({
         {!isPreviousMeeting &&
           <div className="relative flex w-full justify-center items-center">
             <div className="relative flex w-full ">
-              <div className=" size-10 rounded-full border-[5px] border-[#252A41] bg-[#1E2757]">
+              <div className=" size-10 rounded-full border-[5px] dark:border-[#252A41] dark:bg-[#1E2757]">
                 <UserProfilePhoto />
               </div>
             </div>
@@ -65,10 +65,10 @@ const MeetingCard = ({
               onClick={() => {
                 navigator.clipboard.writeText(link);
                 toast(
-                  "Link Copied",
+                  "لینک کپی شد",
                 );
               }}
-              className="bg-[#1E2757s] px-6"
+              className="bg-[#56A8FFFF] border-1 dark:bg-[#1E2757s]    dark:border-none px-6"
             >
               <Image
                 src="/icons/copy.svg"
@@ -76,7 +76,7 @@ const MeetingCard = ({
                 width={20}
                 height={20}
               />
-              &nbsp; Copy Link
+              &nbsp; کپی از لینک
             </Button>
           </div>
         )}

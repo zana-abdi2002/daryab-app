@@ -70,11 +70,11 @@ const MeetingRoom = () => {
         <div className='flex gap-5'>
           <DropdownMenu>
             <div className="flex items-center">
-              <DropdownMenuTrigger className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]  ">
+              <DropdownMenuTrigger className="cursor-pointer rounded-2xl dark:bg-[#19232d] px-4 py-2 dark:hover:bg-[#4c535b]  ">
                 <LayoutList size={20} className="text-white" />
               </DropdownMenuTrigger>
             </div>
-            <DropdownMenuContent className="border-[#1C1F2E] bg-[#1C1F2E] text-white">
+            <DropdownMenuContent className="dark:border-[#1C1F2E] dark:bg-[#1C1F2E] dark:text-white">
               {['Grid', 'Speaker-Left', 'Speaker-Right'].map((item, index) => (
                 <div key={index}>
                   <DropdownMenuItem

@@ -9,6 +9,7 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "react-datepicker/dist/react-datepicker.css"
 // import "global.css";
 import localFont from 'next/font/local';
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa-IR" dir="rtl" className={myFont.className}>
+    <html lang="fa-IR" dir="rtl" className={myFont.className} suppressHydrationWarning>
       <ClerkProvider
         appearance={{
           layout: {
@@ -85,10 +86,17 @@ export default function RootLayout({
         localization={faIR}
       >
         <body
-          className={`antialiased bg-[#161925]`}
+          className={`antialiased bg-[#09a6f3] dark:bg-[#161925]`}
         >
-          {children}
           <Toaster expand={true} closeButton richColors position="top-center" />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </ClerkProvider>
     </html>
