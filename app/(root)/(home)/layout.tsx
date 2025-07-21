@@ -5,11 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Daryab",
-  description: "video call easily",
-  icons: {
-    icon: "/icons/logo.svg",
-  },
+  title: "تماسهای آینده",
 };
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {

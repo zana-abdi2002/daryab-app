@@ -1,5 +1,10 @@
 import CallList from "@/components/CallList";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "تماسهای ضبط شده",
+};
 
 const Recordings = () => {
   return (

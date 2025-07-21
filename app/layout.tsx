@@ -13,7 +13,11 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 
 export const metadata: Metadata = {
-  title: "Daryab",
+  title: {
+    default: 'دریاب',
+    template: '%s | دریاب',
+    // absolute: ''
+  },
   description: "تماس تصویری آسان",
   icons: {
     icon: "/icons/logo.svg",
