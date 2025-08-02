@@ -124,6 +124,18 @@
   html {
     font-size: 18px;
   }
+
+  /* Disable the blinking text cursor (caret) on all input elements */
+  input,
+  textarea,
+  [contenteditable] {
+    caret-color: transparent !important;
+  }
+
+  /* Also disable caret on any element that might have text input */
+  * {
+    caret-color: transparent !important;
+  }
 }
 
 .glassmorphism {
