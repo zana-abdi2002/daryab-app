@@ -137,36 +137,38 @@ const MeetingTypeList = () => {
             <label className="text-base text-normal leading-[22px] text-sky-100 ">
               یک تاریخ انتخاب کنید
             </label>
-            <DatePicker
-              calendar={persian}
-              locale={persian_fa}
-              value={values.dateTime}
-              // set values for a new call based on user input
-              onChange={(date) =>
-                setValues({ ...values, dateTime: date!.toDate() })
-              }
-              plugins={[
-                <TimePicker
-                  key="time-picker"
-                  // timeCaption="ساعت"
-                  position="top"
-                  hStep={1}
-                  mStep={5}
-                />,
-              ]}
-              format="DD MMMM hh:mm a" // Jalali format with time
-              className="w-full rounded bg-dark focus:outline-none pointer-events-auto"
-              arrow={false}
-              // inputClass="w-full bg-transparent text-white"
-              calendarPosition="bottom-right"
-              offsetY={-50}
+            <div onClick={(e) => e.stopPropagation()}>
+              <DatePicker
+                calendar={persian}
+                locale={persian_fa}
+                value={values.dateTime}
+                // set values for a new call based on user input
+                onChange={(date) =>
+                  setValues({ ...values, dateTime: date!.toDate() })
+                }
+                plugins={[
+                  <TimePicker
+                    key="time-picker"
+                    // timeCaption="ساعت"
+                    position="top"
+                    hStep={1}
+                    mStep={5}
+                  />,
+                ]}
+                format="DD MMMM hh:mm a" // Jalali format with time
+                className="w-full rounded bg-dark focus:outline-none pointer-events-auto"
+                arrow={false}
+                // inputClass="w-full bg-transparent text-white"
+                calendarPosition="bottom-right"
+                offsetY={-50}
               // timePickerProps={{
               //   format: "HH:mm",
               //   hourStep: 1,
               //   minuteStep: 15,
               //   timeCaption: "ساعت",
               // }}
-            />
+              />
+            </div>
           </div>
         </MeetingModal>
       ) : (
