@@ -90,7 +90,7 @@ const MeetingTypeList = () => {
         color="bg-[#FF742E]"
       />
       <HomeCard
-        imgSrc="/icons/Schedule.svg"
+        imgSrc="/icons/schedule.svg"
         title="برنامه جدید"
         description="جلسه خود را برنامه ریزی کنید"
         handleClick={() => setmeetingState("isScheduleMeeting")}
@@ -160,12 +160,12 @@ const MeetingTypeList = () => {
               // inputClass="w-full bg-transparent text-white"
               calendarPosition="bottom-right"
               offsetY={-50}
-            // timePickerProps={{
-            //   format: "HH:mm",
-            //   hourStep: 1,
-            //   minuteStep: 15,
-            //   timeCaption: "ساعت",
-            // }}
+              // timePickerProps={{
+              //   format: "HH:mm",
+              //   hourStep: 1,
+              //   minuteStep: 15,
+              //   timeCaption: "ساعت",
+              // }}
             />
           </div>
         </MeetingModal>
