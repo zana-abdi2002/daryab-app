@@ -7,12 +7,12 @@ import { Call } from "@stream-io/video-react-sdk";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Silk from "@/components/ui/Silk";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 const Home = () => {
   const [now, setNow] = useState(new Date());
   const { upcomingCalls, isLoading } = useGetCalls();
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -102,7 +102,7 @@ const Home = () => {
         </div>
       </div>
 
-      <MeetingTypeList />
+      <MeetingTypeList key={meetingType.id} />
     </section>
   );
 };

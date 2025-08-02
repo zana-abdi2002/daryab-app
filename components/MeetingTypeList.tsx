@@ -66,8 +66,8 @@ const MeetingTypeList = () => {
 
       // if it is instantMeeting, no where it is pushed
       // we know instant meeting doesn't have customized description
-      // therefore if !values.description, it is instantMeeting and 
-      // must be pushed here 
+      // therefore if !values.description, it is instantMeeting and
+      // must be pushed here
       if (!values.description) {
         router.push(`/meeting/${call.id}`);
       }
@@ -78,7 +78,7 @@ const MeetingTypeList = () => {
     }
   };
 
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
+  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`;
 
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-5 md:gap-4">
@@ -111,23 +111,27 @@ const MeetingTypeList = () => {
         color="bg-[#F9A90E]"
       />
 
-      {!callDetails ? // * before creating a scheduled call
-        (<MeetingModal
+      {!callDetails ? ( // * before creating a scheduled call
+        <MeetingModal
           isOpen={meetingState === "isScheduleMeeting"}
           onClose={() => setmeetingState(undefined)}
           title="برنامه ریزی یک جلسه"
           buttonText="ساخت جلسه"
           className="text-center"
           handleClick={createMeeting}
+          key={crypto.randomUUID()}
         >
           <div className="flex flex-col gap-2.5">
             <label className="text-base text-normal leading-[22px] text-sky-100 ">
               توضیحات
             </label>
-            <Textarea className="border-non bg-[#161925] focus-visible:ring-0 focus-visible:ring-offset-0" onChange={(e) => {
-              // set values for a new call based on user input
-              setValues({ ...values, description: e.target.value })
-            }} />
+            <Textarea
+              className="border-non bg-[#161925] focus-visible:ring-0 focus-visible:ring-offset-0"
+              onChange={(e) => {
+                // set values for a new call based on user input
+                setValues({ ...values, description: e.target.value });
+              }}
+            />
           </div>
 
           <div className="flex w-full flex-col gap-2.5">
@@ -139,14 +143,16 @@ const MeetingTypeList = () => {
               locale={persian_fa}
               value={values.dateTime}
               // set values for a new call based on user input
-              onChange={(date) => setValues({ ...values, dateTime: date!.toDate() })}
+              onChange={(date) =>
+                setValues({ ...values, dateTime: date!.toDate() })
+              }
               plugins={[
                 <TimePicker
                   // timeCaption="ساعت"
                   position="top"
                   hStep={1}
                   mStep={5}
-                />
+                />,
               ]}
               format="DD MMMM hh:mm a" // Jalali format with time
               className="w-full rounded bg-dark focus:outline-none pointer-events-auto"
@@ -154,29 +160,30 @@ const MeetingTypeList = () => {
               // inputClass="w-full bg-transparent text-white"
               calendarPosition="bottom-right"
               offsetY={-50}
-            // timePickerProps={{
-            //   format: "HH:mm",
-            //   hourStep: 1,
-            //   minuteStep: 15,
-            //   timeCaption: "ساعت",
-            // }}
+              // timePickerProps={{
+              //   format: "HH:mm",
+              //   hourStep: 1,
+              //   minuteStep: 15,
+              //   timeCaption: "ساعت",
+              // }}
             />
           </div>
-        </MeetingModal>) :
-        (<MeetingModal // * after creating a scheduled call
+        </MeetingModal>
+      ) : (
+        <MeetingModal // * after creating a scheduled call
           isOpen={meetingState === "isScheduleMeeting"}
           onClose={() => setmeetingState(undefined)}
           title="برنامه ریزی یک جلسه"
           className="text-center"
           handleClick={() => {
             navigator.clipboard.writeText(meetingLink);
-            toast.success('لینک کپی شد')
+            toast.success("لینک کپی شد");
           }}
           image="/icons/checked.svg"
           buttonIcon="/icons/copy.svg"
           buttonText="لینک جلسه را کپی کن"
         />
-        )}
+      )}
 
       <MeetingModal
         isOpen={meetingState === "isInstantMeeting"}
