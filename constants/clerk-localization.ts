@@ -63,13 +63,13 @@ export const faIR = {
     sameDay: "Today at {{ date | timeString('en-US') }}",
   },
   dividerText: "یا",
-  footerActionLink__useAnotherMethod: "Use another method",
+  footerActionLink__useAnotherMethod: "استفاده از روشی دیگر",
   footerPageLink__help: "Help",
   footerPageLink__privacy: "Privacy",
   footerPageLink__terms: "Terms",
   formButtonPrimary: "ادامه",
   formButtonPrimary__verify: "Verify",
-  formFieldAction__forgotPassword: "Forgot password?",
+  formFieldAction__forgotPassword: "رمز را فراموش کرده‌اید؟",
   formFieldError__matchingPasswords: "Passwords match.",
   formFieldError__notMatchingPasswords: "Passwords don't match.",
   formFieldError__verificationLinkExpired:
@@ -330,7 +330,7 @@ export const faIR = {
       },
       subtitle:
         "Facing issues? You can use any of these methods for verification.",
-      title: "Use another method",
+      title: "استفاده از روشی دیگر",
     },
     backupCodeMfa: {
       subtitle:
@@ -356,7 +356,7 @@ export const faIR = {
       title: "Use your passkey",
     },
     password: {
-      actionLink: "Use another method",
+      actionLink: "استفاده از روشی دیگر",
       subtitle: "Enter your current password to continue",
       title: "Verification required",
     },
@@ -403,7 +403,7 @@ export const faIR = {
         title: "Get help",
       },
       subtitle: "Facing issues? You can use any of these methods to sign in.",
-      title: "Use another method",
+      title: "استفاده از روشی دیگر",
     },
     backupCodeMfa: {
       subtitle:
@@ -451,7 +451,7 @@ export const faIR = {
     forgotPasswordAlternativeMethods: {
       blockButton__resetPassword: "Reset your password",
       label__alternativeMethods: "Or, sign in with another method",
-      title: "Forgot Password?",
+      title: "رمز را فراموش کرده‌اید؟",
     },
     noAvailableMethods: {
       message:
@@ -465,8 +465,8 @@ export const faIR = {
       title: "Use your passkey",
     },
     password: {
-      actionLink: "Use another method",
-      subtitle: "Enter the password associated with your account",
+      actionLink: "استفاده از روشی دیگر",
+      subtitle: "رمز عبور حساب خود را وارد کنید",
       title: "رمز را وارد کنید",
     },
     passwordPwned: {
