@@ -124,31 +124,6 @@
   html {
     font-size: 18px;
   }
-
-  /* Disable cursor/caret on all elements */
-  * {
-    caret-color: transparent !important;
-  }
-
-  /* Disable text selection cursor */
-  input,
-  textarea,
-  [contenteditable] {
-    caret-color: transparent !important;
-  }
-
-  /* Hide cursor on interactive elements */
-  button,
-  a,
-  [role="button"],
-  [tabindex] {
-    cursor: none !important;
-  }
-
-  /* Hide cursor on all elements */
-  * {
-    cursor: none !important;
-  }
 }
 
 .glassmorphism {
