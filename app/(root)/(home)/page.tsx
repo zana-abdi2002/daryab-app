@@ -102,7 +102,7 @@ const Home = () => {
         </div>
       </div>
 
-      <MeetingTypeList key={meetingType.id} />
+      <MeetingTypeList />
     </section>
   );
 };

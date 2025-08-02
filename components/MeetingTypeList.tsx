@@ -119,7 +119,6 @@ const MeetingTypeList = () => {
           buttonText="ساخت جلسه"
           className="text-center"
           handleClick={createMeeting}
-          key={crypto.randomUUID()}
         >
           <div className="flex flex-col gap-2.5">
             <label className="text-base text-normal leading-[22px] text-sky-100 ">
@@ -148,6 +147,7 @@ const MeetingTypeList = () => {
               }
               plugins={[
                 <TimePicker
+                  key="time-picker"
                   // timeCaption="ساعت"
                   position="top"
                   hStep={1}
@@ -160,12 +160,12 @@ const MeetingTypeList = () => {
               // inputClass="w-full bg-transparent text-white"
               calendarPosition="bottom-right"
               offsetY={-50}
-              // timePickerProps={{
-              //   format: "HH:mm",
-              //   hourStep: 1,
-              //   minuteStep: 15,
-              //   timeCaption: "ساعت",
-              // }}
+            // timePickerProps={{
+            //   format: "HH:mm",
+            //   hourStep: 1,
+            //   minuteStep: 15,
+            //   timeCaption: "ساعت",
+            // }}
             />
           </div>
         </MeetingModal>

@@ -95,7 +95,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
   }
 
   const uniqueId = () => {
-    return crypto.randomUUID()
+    return `fallback-${Date.now()}-${Math.random()}`
   }
 
   const calls = getCalls()
@@ -134,7 +134,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
           buttonText={type === 'recordings' ? 'پخش' : 'شروع'}
           link={
             // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
-            type === 'recordings' ? meeting.url : `${process.env.NEXT_PUBLICK_BASE_URL}/meeting/${meeting.id}`
+            type === 'recordings' ? meeting.url : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`
           }
           // @ts-expect-error: the type checker is not aware of the dynamic type of the 'meeting' variable
           handleClick={type === 'recordings' ? () => router.push(`${meeting.url}`) : () => router.push(`/meeting/${meeting.id}`)}
