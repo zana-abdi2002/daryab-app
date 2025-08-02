@@ -646,7 +646,7 @@ export const faIR = {
       "Your password has exceeded the maximum number of bytes allowed, please shorten it or remove some special characters.",
     form_password_validation_failed: "Incorrect Password",
     form_username_invalid_character:
-      "Your username contains invalid characters. Please use only letters, numbers, and underscores.",
+      "نام کاربری شما کاراکترهای غیرمجاز دارد. لطفا فقط از حروف انگلیسی، شماره و _ استفاده کنید.",
     form_username_invalid_length:
       "Your username must be between {{min_length}} and {{max_length}} characters long.",
     identification_deletion_failed:
