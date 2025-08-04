@@ -6,27 +6,26 @@ import { Toaster } from "@/components/ui/sonner";
 import { faIR } from "@/constants/clerk-localization";
 // import { toast } from "sonner";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
 // import "global.css";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
-
 
 export const metadata: Metadata = {
   title: {
-    default: 'دریاب',
-    template: '%s | دریاب',
+    default: "دریاب",
+    template: "%s | دریاب",
     // absolute: ''
   },
   description: "تماس تصویری آسان",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: "/icons/logo.png",
   },
 };
 
 const myFont = localFont({
-  src: '../public/fonts/Lalezar-Regular.ttf',
-  variable: '--font-myfont',
+  src: "../public/fonts/Lalezar-Regular.ttf",
+  variable: "--font-myfont",
 });
 
 export default function RootLayout({
@@ -35,11 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa-IR" dir="rtl" className={myFont.className} suppressHydrationWarning>
+    <html
+      lang="fa-IR"
+      dir="rtl"
+      className={myFont.className}
+      suppressHydrationWarning
+    >
       <ClerkProvider
         appearance={{
           layout: {
-            logoImageUrl: "icons/logo.svg",
+            logoImageUrl: "icons/logo.png",
             socialButtonsVariant: "iconButton",
             unsafe_disableDevelopmentModeWarnings: true,
           },
@@ -89,9 +93,7 @@ export default function RootLayout({
         }}
         localization={faIR}
       >
-        <body
-          className={`antialiased bg-[#09a6f3] dark:bg-[#161925]`}
-        >
+        <body className={`antialiased bg-[#09a6f3] dark:bg-[#161925]`}>
           <Toaster expand={true} closeButton richColors position="top-center" />
           <ThemeProvider
             attribute="class"

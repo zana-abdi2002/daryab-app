@@ -32,7 +32,6 @@ const MobileNav = () => {
           />
         </SheetTrigger>
 
-
         <SheetContent
           side="left"
           className="border-none bg-[#1C1F2E] max-w-[250px]"
@@ -41,7 +40,7 @@ const MobileNav = () => {
             <SheetTitle>
               <Link href="/" className="flex items-center gap-1">
                 <Image
-                  src="/icons/logo.svg"
+                  src="/icons/logo.png"
                   alt="Daryab logo"
                   width={32}
                   height={32}
