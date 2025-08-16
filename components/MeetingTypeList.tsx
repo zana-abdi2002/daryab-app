@@ -143,9 +143,21 @@ const MeetingTypeList = () => {
                 locale={persian_fa}
                 value={values.dateTime}
                 // set values for a new call based on user input
-                onChange={(date) =>
-                  setValues({ ...values, dateTime: date!.toDate() })
-                }
+                onChange={(date) => {
+                  const selectedDate = date!.toDate();
+                  const now = new Date();
+                  
+                  if (selectedDate <= now) {
+                    toast.error("تاریخ و زمان انتخاب شده باید در آینده باشد");
+                    // Reset to current time + 1 hour as a default future time
+                    const oneHourLater = new Date();
+                    oneHourLater.setHours(now.getHours() + 1);
+                    setValues({ ...values, dateTime: oneHourLater });
+                    return;
+                  }
+                  
+                  setValues({ ...values, dateTime: selectedDate });
+                }}
                 plugins={[
                   <TimePicker
                     key="time-picker"
