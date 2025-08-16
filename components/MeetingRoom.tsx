@@ -1,16 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   CallControls,
   CallParticipantsList,
-  CallStatsButton,
   CallingState,
   PaginatedGridLayout,
   SpeakerLayout,
   useCallStateHooks,
 } from "@stream-io/video-react-sdk";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Users, LayoutList } from "lucide-react";
+import { LayoutList } from "lucide-react";
 
 import {
   DropdownMenu,

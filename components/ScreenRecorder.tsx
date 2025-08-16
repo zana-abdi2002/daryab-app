@@ -25,7 +25,7 @@ declare global {
     preferCurrentTab?: boolean;
   }
 }
-import { Circle, CircleStop, Save, Video } from "lucide-react";
+import { Circle, CircleStop, Save } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 
@@ -71,7 +71,7 @@ export default function ScreenRecorder({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isRecording]);
+  }, [isRecording, recordingTime]);
 
   // Clean up on unmount
   useEffect(() => {
