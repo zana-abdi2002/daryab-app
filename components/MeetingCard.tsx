@@ -1,6 +1,5 @@
 "use client";
 
-
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -43,16 +42,16 @@ const MeetingCard = ({
           </div>
         </div>
       </div>
-      <div className={cn("flex justify-center relative pt-3", {})}>
-        {!isPreviousMeeting &&
-          <div className="relative flex w-full justify-center items-center">
-            <div className="relative flex w-full ">
-              <div className=" size-10 rounded-full border-[5px] dark:border-[#252A41] dark:bg-[#1E2757]">
+      <div className={cn("flex flex-row justify-between gap-4 pt-3")}>
+        {!isPreviousMeeting && (
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 dark:border-[#252A41] bg-white dark:bg-[#1E2757] flex items-center justify-center">
                 <UserProfilePhoto />
               </div>
             </div>
           </div>
-        }
+        )}
         {!isPreviousMeeting && (
           <div className="flex gap-2 items-center justify-center">
             <Button onClick={handleClick} className="rounded bg-[#0E78F9] px-6">
@@ -64,9 +63,7 @@ const MeetingCard = ({
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(link);
-                toast(
-                  "لینک کپی شد",
-                );
+                toast("لینک کپی شد");
               }}
               className="bg-[#56A8FFFF] border-1 dark:bg-[#1E2757s]    dark:border-none px-6"
             >
@@ -81,7 +78,7 @@ const MeetingCard = ({
           </div>
         )}
       </div>
-    </section >
+    </section>
   );
 };
 

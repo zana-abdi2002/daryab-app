@@ -7,13 +7,28 @@ import Image from "next/image";
 const UserProfilePhoto = () => {
   const { user, isLoaded } = useUser();
 
-  if (!isLoaded || !user) return null;
+  if (!isLoaded) {
+    return (
+      <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <span className="text-xs text-gray-500">?</span>
+      </div>
+    );
+  }
 
   return (
     <Image
       src={user.imageUrl}
       alt={user.fullName || "User"}
-      className="rounded-full object-cover block size-8"
+      width={32}
+      height={32}
+      className="rounded-full object-cover w-8 h-8"
+      unoptimized={user.imageUrl?.startsWith('http')}
     />
   );
 };
