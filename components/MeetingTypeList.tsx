@@ -51,7 +51,7 @@ const MeetingTypeList = () => {
       const startsAt =
         values.dateTime.toISOString() || new Date(Date.now()).toISOString();
 
-      const description = values.description || "instant meeting";
+      const description = values.description || "جلسه فوری";
 
       await call.getOrCreate({
         data: {
