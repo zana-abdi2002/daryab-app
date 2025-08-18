@@ -1,12 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-// import { avatarImages } from "@/constants";
 import { toast } from "sonner";
 import UserProfilePhoto from "./UserProfilePhoto";
+import { deleteCall } from "@/actions/stream.actions";
+import { useRouter } from "next/navigation";
+
+interface MeetingState {
+  startsAt?: Date | string;
+  custom?: {
+    description?: string;
+  };
+}
 
 interface MeetingCardProps {
   title: string;
@@ -17,6 +25,13 @@ interface MeetingCardProps {
   buttonText?: string;
   handleClick: () => void;
   link: string;
+  meeting: {
+    id?: string;
+    state?: MeetingState;
+    start_time?: Date | string;
+    url?: string;
+    [key: string]: unknown;
+  };
 }
 
 const MeetingCard = ({
@@ -28,8 +43,31 @@ const MeetingCard = ({
   handleClick,
   link,
   buttonText,
+  meeting,
 }: MeetingCardProps) => {
-  // const { toast } = useToast();
+  const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!('id' in meeting) || !meeting.id) return;
+    
+    try {
+      setIsDeleting(true);
+      const { success } = await deleteCall(meeting.id as string);
+      if (success) {
+        toast.success("جلسه با موفقیت حذف شد");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Error deleting call:", error);
+      toast.error("حذف جلسه با خطا مواجه شد");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   return (
     <section className="flex w-full flex-col justify-between rounded-[14px] border-2 dark:bg-[#1C1F2E] dark:border-none px-5 py-8 xl:max-w-[568px]">
@@ -53,13 +91,43 @@ const MeetingCard = ({
           </div>
         )}
         {!isPreviousMeeting && (
-          <div className="flex gap-2 items-center justify-center">
-            <Button onClick={handleClick} className="rounded bg-[#0E78F9] px-6">
-              {buttonIcon1 && (
-                <Image src={buttonIcon1} alt="feature" width={20} height={20} />
-              )}
-              &nbsp; {buttonText}
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-2 items-center justify-center">
+            <div className="flex gap-2">
+              <Button 
+                onClick={handleClick} 
+                className="rounded bg-[#0E78F9] px-6 min-w-[120px]"
+                disabled={isDeleting}
+              >
+                {buttonIcon1 && (
+                  <Image src={buttonIcon1} alt="feature" width={20} height={20} />
+                )}
+                &nbsp; {buttonText}
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="min-w-[120px]"
+              >
+                {isDeleting ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+                    در حال حذف...
+                  </div>
+                ) : (
+                  <>
+                    <Image 
+                      src="/icons/trash.svg" 
+                      alt="delete" 
+                      width={16} 
+                      height={16} 
+                      className="ml-1"
+                    />
+                    حذف
+                  </>
+                )}
+              </Button>
+            </div>
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(link);
