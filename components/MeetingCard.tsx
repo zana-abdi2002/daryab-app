@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import UserProfilePhoto from "./UserProfilePhoto";
 import { deleteCall } from "@/actions/stream.actions";
 import { useRouter } from "next/navigation";
+import { Trash2 } from "lucide-react";
 
 interface MeetingState {
   startsAt?: Date | string;
@@ -32,6 +33,7 @@ interface MeetingCardProps {
     url?: string;
     [key: string]: unknown;
   };
+  onDelete?: () => Promise<void>;
 }
 
 const MeetingCard = ({
@@ -44,6 +46,7 @@ const MeetingCard = ({
   link,
   buttonText,
   meeting,
+  onDelete,
 }: MeetingCardProps) => {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
@@ -59,7 +62,13 @@ const MeetingCard = ({
       const { success } = await deleteCall(meeting.id as string);
       if (success) {
         toast.success("جلسه با موفقیت حذف شد");
-        router.refresh();
+        // Call the onDelete callback if provided
+        if (onDelete) {
+          await onDelete();
+        } else {
+          // Fallback to router refresh if onDelete is not provided
+          router.refresh();
+        }
       }
     } catch (error) {
       console.error("Error deleting call:", error);
@@ -107,7 +116,11 @@ const MeetingCard = ({
                 variant="destructive"
                 onClick={handleDelete}
                 disabled={isDeleting}
-                className="min-w-[120px]"
+                className="min-w-[120px] transition-all duration-200 ease-in-out 
+                  hover:bg-red-700 hover:scale-105 active:scale-95 active:bg-red-800
+                  focus:ring-2 focus:ring-red-500 focus:ring-opacity-50
+                  transform hover:shadow-lg dark:hover:bg-red-800
+                  disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isDeleting ? (
                   <div className="flex items-center gap-2">
@@ -115,16 +128,15 @@ const MeetingCard = ({
                     در حال حذف...
                   </div>
                 ) : (
-                  <>
-                    <Image 
-                      src="/icons/trash.svg" 
-                      alt="delete" 
-                      width={16} 
-                      height={16} 
-                      className="ml-1"
-                    />
-                    حذف
-                  </>
+                  <div className="flex items-center gap-1.5 group">
+                    <div className="flex items-center gap-1.5">
+                      <Trash2 className="w-4 h-4" />
+                      <span className="relative group-hover:font-medium text-base">
+                        حذف
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-200"></span>
+                      </span>
+                    </div>
+                  </div>
                 )}
               </Button>
             </div>

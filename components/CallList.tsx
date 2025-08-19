@@ -19,7 +19,7 @@ interface MeetingState {
 type Meeting = { [key: string]: unknown };
 
 const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
-  const { endedCalls, upcomingCalls, callRecordings, isLoading } =
+  const { endedCalls, upcomingCalls, callRecordings, isLoading, refetchCalls } =
     useGetCalls();
   const [recordings, setRecordings] = useState<CallRecording[]>([]);
   const router = useRouter();
@@ -178,6 +178,7 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
                 // Add URL for recordings
                 url: (meeting as { url?: string }).url || ""
               }}
+              onDelete={refetchCalls}
             />
           );
         })
