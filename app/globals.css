@@ -136,6 +136,28 @@
   * {
     caret-color: transparent !important;
   }
+
+  /* Modern caret styles for auth section */
+  .cl-rootBox input[type="text"],
+  .cl-rootBox input[type="email"],
+  .cl-rootBox input[type="password"],
+  .cl-rootBox input[type="tel"],
+  .cl-rootBox input[type="number"],
+  .cl-rootBox [contenteditable="true"] {
+    caret-color: var(--primary) !important;
+    caret-shape: bar !important;
+    caret-width: 2px !important;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
 }
 
 .glassmorphism {
