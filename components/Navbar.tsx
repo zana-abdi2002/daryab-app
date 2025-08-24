@@ -29,7 +29,7 @@ const Navbar = () => {
               ? ["#40ffaa", "#4079ff", "#00FFF2FF", "#40FF7CFF", "#9CFF40FF"]
               : ["#0000ff", "#001cff", "#0039ff", "#0055ff", "#0055ff"]
           }
-          animationSpeed={20}
+          animationSpeed={40}
           showBorder={false}
           className="text-[30px] font-extrabold max-sm:hidden"
         >
