@@ -35,24 +35,24 @@ const Sidebar = () => {
                       }
                     )}
                   >
-                    <div className="relative">
+                    <div className="relative group-hover:scale-110 transition-transform duration-300 ease-in-out">
                       <Image
                         src={link.imgUrl}
                         alt={link.label}
-                        width={24}
-                        height={24}
-                        className="group-hover:scale-110 transition-transform"
+                        width={26}
+                        height={26}
+                        className="group-hover:scale-125 transition-transform duration-300 ease-in-out"
                       />
                     </div>
-                    <p className="text-lg font-semibold max-lg:hidden">
+                    <p className="text-lg font-semibold max-lg:hidden group-hover:scale-105 group-hover:font-bold transition-all duration-300 ease-in-out">
                       {link.label}
                     </p>
                   </a>
                 </TooltipTrigger>
                 <TooltipContent 
                   side="right" 
-                  sideOffset={10}
-                  className="lg:hidden bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900"
+                  sideOffset={15}
+                  className="lg:hidden bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 text-base font-medium px-3 py-2 shadow-lg"
                 >
                   <p className="font-medium">{link.label}</p>
                 </TooltipContent>

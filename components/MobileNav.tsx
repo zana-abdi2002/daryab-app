@@ -28,13 +28,13 @@ const MobileNav = () => {
             width={36}
             height={36}
             alt="side panel navbar"
-            className="cursor-pointer sm:hidden"
+            className="cursor-pointer sm:hidden hover:opacity-80 transition-opacity duration-200"
           />
         </SheetTrigger>
 
         <SheetContent
           side="left"
-          className="border-none bg-[#1C1F2E] max-w-[250px]"
+          className="border-none bg-[#1C1F2E] max-w-[250px] overflow-y-auto"
         >
           <SheetHeader className="flex flex-row-reverse items-center px-2">
             <SheetTitle>
@@ -70,19 +70,24 @@ const MobileNav = () => {
                       href={link.route}
                       key={link.label}
                       className={cn(
-                        "flex flex-row-reverse gap-4 items-center p-4 rounded-lg justify-between w-full ",
+                        "flex flex-row-reverse gap-4 items-center p-4 rounded-lg justify-between w-full group hover:bg-[#2a2f45] transition-colors duration-300",
                         {
                           "bg-[#0E78F9]": isActive,
                         }
                       )}
                     >
-                      <Image
-                        src={link.imgUrl}
-                        alt={link.label}
-                        width={20}
-                        height={20}
-                      />
-                      <p className=" font-semibold ">{link.label}</p>
+                      <div className="relative group-hover:scale-110 transition-transform duration-300 ease-in-out">
+                        <Image
+                          src={link.imgUrl}
+                          alt={link.label}
+                          width={22}
+                          height={22}
+                          className="group-hover:scale-125 transition-transform duration-300 ease-in-out"
+                        />
+                      </div>
+                      <p className="font-semibold group-hover:scale-105 group-hover:font-bold transition-all duration-300 ease-in-out">
+                        {link.label}
+                      </p>
                     </a>
                   );
                 })}
