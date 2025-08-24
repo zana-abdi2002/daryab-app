@@ -12,7 +12,7 @@ import Silk from "@/components/ui/Silk";
 const Home = () => {
   const [now, setNow] = useState(new Date());
   const [initialMeetingState, setInitialMeetingState] = useState<MeetingTypeListProps['initialMeetingState']>();
-  const { upcomingCalls, isLoading } = useGetCalls();
+  const { upcomingCalls, isLoading, refetchCalls } = useGetCalls();
   // const { theme } = useTheme();
 
   useEffect(() => {
@@ -109,6 +109,7 @@ const Home = () => {
       <MeetingTypeList 
         initialMeetingState={initialMeetingState}
         onStateReset={() => setInitialMeetingState(undefined)}
+        onMeetingCreated={refetchCalls}
       />
     </section>
   );

@@ -24,11 +24,13 @@ interface MeetingTypeListProps {
     | "isInstantMeeting"
     | undefined;
   onStateReset?: () => void;
+  onMeetingCreated?: () => void;
 }
 
 const MeetingTypeList = ({
   initialMeetingState,
   onStateReset,
+  onMeetingCreated,
 }: MeetingTypeListProps) => {
   const router = useRouter();
 
@@ -101,6 +103,25 @@ const MeetingTypeList = ({
       }
 
       toast.success("تماس ساخته شد");
+      
+      // Reset state and form values
+      setCallDetails(undefined);
+      setmeetingState(undefined);
+      setValues({
+        dateTime: new Date(),
+        description: "",
+        link: "",
+      });
+      
+      // Notify parent to refresh data
+      if (onMeetingCreated) {
+        await onMeetingCreated();
+      }
+      
+      // Ensure modal is closed after everything is done
+      if (onStateReset) {
+        onStateReset();
+      }
     } catch (error) {
       console.log(error);
     }
