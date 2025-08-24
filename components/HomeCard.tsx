@@ -20,7 +20,8 @@ const HomeCard = ({
   return (
     <div
       className={cn(
-        " px-4 py-6 max-md:py-3 flex flex-col justify-between w-full xl:max-w-[270px]  md:min-h-[200px] rounded-[14px] cursor-pointer max-md:gap-4",
+        "px-4 py-6 max-md:py-3 flex flex-col justify-between w-full xl:max-w-[270px] md:min-h-[200px] rounded-[14px] cursor-pointer max-md:gap-4",
+        "transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg",
         color
       )}
       onClick={handleClick}

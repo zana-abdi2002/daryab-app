@@ -1,7 +1,7 @@
 "use client";
 
 import Loader from "@/components/Loader";
-import MeetingTypeList from "@/components/MeetingTypeList";
+import MeetingTypeList, { MeetingTypeListProps } from "@/components/MeetingTypeList";
 import { useGetCalls } from "@/hooks/useGetCalls";
 import { Call } from "@stream-io/video-react-sdk";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import Silk from "@/components/ui/Silk";
 
 const Home = () => {
   const [now, setNow] = useState(new Date());
+  const [initialMeetingState, setInitialMeetingState] = useState<MeetingTypeListProps['initialMeetingState']>();
   const { upcomingCalls, isLoading } = useGetCalls();
   // const { theme } = useTheme();
 
@@ -87,7 +88,10 @@ const Home = () => {
               </Link>
             </h2>
           ) : (
-            <h2 className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal">
+            <h2 
+              className="glassmorphism max-w-fit rounded-[2px] px-2 py-1 mr-9 mt-2 text-center text-base font-normal cursor-pointer hover:bg-opacity-80 transition-all duration-200"
+              onClick={() => setInitialMeetingState("isScheduleMeeting")}
+            >
               جلسه ای برنامه ریزی نشده
             </h2>
           )}
@@ -102,7 +106,10 @@ const Home = () => {
         </div>
       </div>
 
-      <MeetingTypeList />
+      <MeetingTypeList 
+        initialMeetingState={initialMeetingState}
+        onStateReset={() => setInitialMeetingState(undefined)}
+      />
     </section>
   );
 };

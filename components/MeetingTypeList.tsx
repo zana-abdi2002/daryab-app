@@ -2,7 +2,7 @@
 
 // import Image from "next/image";
 import HomeCard from "./HomeCard";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import MeetingModal from "./MeetingModal";
 import { useUser } from "@clerk/nextjs";
@@ -17,12 +17,40 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { Input } from "./ui/input";
 
-const MeetingTypeList = () => {
+interface MeetingTypeListProps {
+  initialMeetingState?:
+    | "isScheduleMeeting"
+    | "isJoiningMeeting"
+    | "isInstantMeeting"
+    | undefined;
+  onStateReset?: () => void;
+}
+
+const MeetingTypeList = ({
+  initialMeetingState,
+  onStateReset,
+}: MeetingTypeListProps) => {
   const router = useRouter();
 
   const [meetingState, setmeetingState] = useState<
     "isScheduleMeeting" | "isJoiningMeeting" | "isInstantMeeting" | undefined
-  >();
+  >(initialMeetingState);
+
+  // Update internal state when initialMeetingState changes
+  useEffect(() => {
+    setmeetingState(initialMeetingState);
+  }, [initialMeetingState]);
+
+  // Handle state changes and notify parent if needed
+  const handleMeetingStateChange = useCallback(
+    (state: typeof meetingState) => {
+      setmeetingState(state);
+      if (state === undefined && onStateReset) {
+        onStateReset();
+      }
+    },
+    [onStateReset]
+  );
 
   const { user } = useUser(); // get user info from clerk
   const client = useStreamVideoClient(); // get stream video client instance
@@ -86,14 +114,14 @@ const MeetingTypeList = () => {
         imgSrc="/icons/add-meeting.svg"
         title="جلسه جدید"
         description="یک جلسه جدید بساز"
-        handleClick={() => setmeetingState("isInstantMeeting")}
+        handleClick={() => handleMeetingStateChange("isInstantMeeting")}
         color="bg-[#FF742E]"
       />
       <HomeCard
         imgSrc="/icons/schedule.svg"
         title="برنامه جدید"
         description="جلسه خود را برنامه ریزی کنید"
-        handleClick={() => setmeetingState("isScheduleMeeting")}
+        handleClick={() => handleMeetingStateChange("isScheduleMeeting")}
         color="bg-[#0E78F9]"
       />
       <HomeCard
@@ -107,14 +135,14 @@ const MeetingTypeList = () => {
         imgSrc="/icons/add-meeting.svg"
         title="پیوستن به جلسه"
         description="با لینک دعوت"
-        handleClick={() => setmeetingState("isJoiningMeeting")}
+        handleClick={() => handleMeetingStateChange("isJoiningMeeting")}
         color="bg-[#F9A90E]"
       />
 
       {!callDetails ? ( // * before creating a scheduled call
         <MeetingModal
           isOpen={meetingState === "isScheduleMeeting"}
-          onClose={() => setmeetingState(undefined)}
+          onClose={() => handleMeetingStateChange(undefined)}
           title="برنامه ریزی یک جلسه"
           buttonText="ساخت جلسه"
           className="text-center"
@@ -146,7 +174,7 @@ const MeetingTypeList = () => {
                 onChange={(date) => {
                   const selectedDate = date!.toDate();
                   const now = new Date();
-                  
+
                   if (selectedDate <= now) {
                     toast.error("تاریخ و زمان انتخاب شده باید در آینده باشد");
                     // Reset to current time + 1 hour as a default future time
@@ -155,7 +183,7 @@ const MeetingTypeList = () => {
                     setValues({ ...values, dateTime: oneHourLater });
                     return;
                   }
-                  
+
                   setValues({ ...values, dateTime: selectedDate });
                 }}
                 plugins={[
@@ -173,12 +201,12 @@ const MeetingTypeList = () => {
                 // inputClass="w-full bg-transparent text-white"
                 calendarPosition="bottom-right"
                 offsetY={-50}
-              // timePickerProps={{
-              //   format: "HH:mm",
-              //   hourStep: 1,
-              //   minuteStep: 15,
-              //   timeCaption: "ساعت",
-              // }}
+                // timePickerProps={{
+                //   format: "HH:mm",
+                //   hourStep: 1,
+                //   minuteStep: 15,
+                //   timeCaption: "ساعت",
+                // }}
               />
             </div>
           </div>
@@ -186,7 +214,7 @@ const MeetingTypeList = () => {
       ) : (
         <MeetingModal // * after creating a scheduled call
           isOpen={meetingState === "isScheduleMeeting"}
-          onClose={() => setmeetingState(undefined)}
+          onClose={() => handleMeetingStateChange(undefined)}
           title="برنامه ریزی یک جلسه"
           className="text-center"
           handleClick={() => {
@@ -201,7 +229,7 @@ const MeetingTypeList = () => {
 
       <MeetingModal
         isOpen={meetingState === "isInstantMeeting"}
-        onClose={() => setmeetingState(undefined)}
+        onClose={() => handleMeetingStateChange(undefined)}
         title="یک جلسه فوری بسازید"
         className="text-center"
         buttonText="ساخت جلسه"
@@ -210,7 +238,7 @@ const MeetingTypeList = () => {
 
       <MeetingModal
         isOpen={meetingState === "isJoiningMeeting"}
-        onClose={() => setmeetingState(undefined)}
+        onClose={() => handleMeetingStateChange(undefined)}
         title="لینک را قرار دهید"
         className="text-center"
         buttonText="پیوستن به جلسه"
@@ -226,4 +254,6 @@ const MeetingTypeList = () => {
   );
 };
 
-export default MeetingTypeList;
+// Export the type for use in parent components
+export type { MeetingTypeListProps };
+export { MeetingTypeList as default };
