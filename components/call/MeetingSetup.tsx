@@ -8,7 +8,7 @@ import {
 // import { console } from "inspector";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const MeetingSetup = ({
   setIsSetupComplete,
@@ -47,9 +47,7 @@ const MeetingSetup = ({
           toast.success("دوربین و میکروفون آماده هستند");
           // setIsMicCamToggledOn(true)
         } catch {
-          toast.error(
-            "لطفا اجازه دسترسی به دوربین و میکروفون را تایید کنید."
-          );
+          toast.error("لطفا اجازه دسترسی به دوربین و میکروفون را تایید کنید.");
           // setIsMicCamToggledOn(false);
         }
       })();
@@ -61,7 +59,6 @@ const MeetingSetup = ({
       // toast.error("لطفا اجازه دسترسی به میکروفون و دوربین را فعال کنید.");
     }
   }, [isMicCamToggledOn, call?.camera, call?.microphone]);
-
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center gap-3 text-white">

@@ -5,7 +5,7 @@ import { CallRecording } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import MeetingCard from "./MeetingCard";
-import Loader from "./Loader";
+import Loader from "../ui/Loader";
 import { toast } from "sonner";
 
 interface MeetingState {
@@ -171,12 +171,13 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
               meeting={{
                 ...meeting,
                 // For recordings, use the recording ID or name as the ID
-                id: (meeting as { id?: string }).id || 
-                    (meeting as { name?: string }).name || 
-                    (meeting as { session_id?: string }).session_id || 
-                    "",
+                id:
+                  (meeting as { id?: string }).id ||
+                  (meeting as { name?: string }).name ||
+                  (meeting as { session_id?: string }).session_id ||
+                  "",
                 // Add URL for recordings
-                url: (meeting as { url?: string }).url || ""
+                url: (meeting as { url?: string }).url || "",
               }}
               onDelete={refetchCalls}
             />

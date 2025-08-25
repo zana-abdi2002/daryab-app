@@ -1,7 +1,7 @@
 "use client";
 
 import { tokenProvider } from "@/actions/stream.actions";
-import Loader from "@/components/Loader";
+import Loader from "@/components/ui/Loader";
 import { useUser } from "@clerk/nextjs";
 // import { Client } from "@clerk/nextjs/server";
 import { StreamVideo, StreamVideoClient } from "@stream-io/video-react-sdk";
@@ -36,11 +36,7 @@ const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
 
   if (!videoClient) return <Loader />;
 
-  return (
-    <StreamVideo client={videoClient}>
-      {children}
-    </StreamVideo>
-  );
+  return <StreamVideo client={videoClient}>{children}</StreamVideo>;
 };
 
 export default StreamVideoProvider;

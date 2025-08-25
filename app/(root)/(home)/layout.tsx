@@ -1,7 +1,7 @@
 import React from "react";
 
-import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/navigation/Navbar";
+import Sidebar from "@/components/navigation/Sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

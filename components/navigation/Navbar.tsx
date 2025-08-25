@@ -5,8 +5,8 @@ import Image from "next/image";
 import React from "react";
 import MobileNav from "./MobileNav";
 import { SignedIn, UserButton } from "@clerk/nextjs";
-import GradientText from "./ui/GradientText";
-import { ModeToggle } from "./ui/ModeToggle";
+import GradientText from "../ui/GradientText";
+import { ModeToggle } from "../ui/ModeToggle";
 import { useTheme } from "next-themes";
 
 const Navbar = () => {

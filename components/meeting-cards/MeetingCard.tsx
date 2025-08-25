@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
-import UserProfilePhoto from "./UserProfilePhoto";
+import UserProfilePhoto from "../ui/UserProfilePhoto";
 import { deleteCall } from "@/actions/stream.actions";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
@@ -54,9 +54,9 @@ const MeetingCard = ({
   const handleDelete = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    if (!('id' in meeting) || !meeting.id) return;
-    
+
+    if (!("id" in meeting) || !meeting.id) return;
+
     try {
       setIsDeleting(true);
       const { success } = await deleteCall(meeting.id as string);
@@ -102,13 +102,18 @@ const MeetingCard = ({
         {!isPreviousMeeting && (
           <div className="flex flex-col sm:flex-row gap-2 items-center justify-center">
             <div className="flex gap-2">
-              <Button 
-                onClick={handleClick} 
+              <Button
+                onClick={handleClick}
                 className="rounded bg-[#0E78F9] px-6 min-w-[120px]"
                 disabled={isDeleting}
               >
                 {buttonIcon1 && (
-                  <Image src={buttonIcon1} alt="feature" width={20} height={20} />
+                  <Image
+                    src={buttonIcon1}
+                    alt="feature"
+                    width={20}
+                    height={20}
+                  />
                 )}
                 &nbsp; {buttonText}
               </Button>

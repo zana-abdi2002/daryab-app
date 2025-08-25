@@ -8,14 +8,14 @@ import MeetingModal from "./MeetingModal";
 import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { toast } from "sonner";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "../ui/textarea";
 // import ReactDatePicker from "react-datepicker";
 import DatePicker from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 
 interface MeetingTypeListProps {
   initialMeetingState?:
@@ -103,7 +103,7 @@ const MeetingTypeList = ({
       }
 
       toast.success("تماس ساخته شد");
-      
+
       // Reset state and form values
       setCallDetails(undefined);
       setmeetingState(undefined);
@@ -112,12 +112,12 @@ const MeetingTypeList = ({
         description: "",
         link: "",
       });
-      
+
       // Notify parent to refresh data
       if (onMeetingCreated) {
         await onMeetingCreated();
       }
-      
+
       // Ensure modal is closed after everything is done
       if (onStateReset) {
         onStateReset();

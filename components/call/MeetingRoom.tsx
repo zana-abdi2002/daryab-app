@@ -22,8 +22,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import Loader from "./Loader";
+} from "../ui/dropdown-menu";
+import Loader from "../ui/Loader";
 // import EndCallButton from "./EndCallButton";
 import ScreenRecorder from "./ScreenRecorder";
 import { cn } from "@/lib/utils";

@@ -1,8 +1,8 @@
 "use client";
 
-import Loader from "@/components/Loader";
-import MeetingRoom from "@/components/MeetingRoom";
-import MeetingSetup from "@/components/MeetingSetup";
+import Loader from "@/components/ui/Loader";
+import MeetingRoom from "@/components/call/MeetingRoom";
+import MeetingSetup from "@/components/call/MeetingSetup";
 import { useGetCallByID } from "@/hooks/useGetCallByID";
 import { useUser } from "@clerk/nextjs";
 import { StreamCall, StreamTheme } from "@stream-io/video-react-sdk";
@@ -23,7 +23,6 @@ const Meeting = () => {
     // handle the case when id is undefined
     return <div>ID is not defined</div>;
   }
-
 
   if (!isLoaded || isCallLoading) return <Loader />;
   return (

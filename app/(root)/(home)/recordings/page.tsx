@@ -1,4 +1,4 @@
-import CallList from "@/components/CallList";
+import CallList from "@/components/meeting-cards/CallList";
 import { Metadata } from "next";
 import React from "react";
 
@@ -11,7 +11,7 @@ const Recordings = () => {
     <section className="flex size-full flex-col gap-10 text-white">
       <h1 className="text-3xl font-bold ">ضبط شده‌ها</h1>
 
-      <CallList type='recordings' />
+      <CallList type="recordings" />
     </section>
   );
 };
